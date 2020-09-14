@@ -1,6 +1,6 @@
 # Godot Sumi-e Shader Demo
 
-This is an implementation of sumi-e (Chinese/East Asian painting) shader on Godot. To access the demo, open `src/Sumie.tscn`. The shader files are located in the assets folder. Basically, there are 2 shaders, a spatial shader to be applied to the meshes, and a post-processing shader to be applied to the final TextureRect node (named 'View' in the demo).
+This is an implementation of sumi-e (Chinese/East Asian painting) shader on Godot. To access the demo, open `src/Sumie.tscn`. The shader files are located in the assets folder. Basically, there are 2 shaders, a spatial shader to be applied to the meshes (`SumiE2.tres`), and a post-processing shader (`Sumie_postprocessing.tres`) to be applied to the final TextureRect node (named 'View' in the demo). You can access and modify the shader through Godot editor.
 
 ---
 ### Mesh source(s):
