@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/10048_Shrimp_v1_L3.obj-5dc2bcc7737f53d1d65e53055a12fef0.mesh"
+
+[deps]
+
+files=[ "res://.import/10048_Shrimp_v1_L3.obj-5dc2bcc7737f53d1d65e53055a12fef0.mesh" ]
+
+source_file="res://assets/10048_Shrimp_v1_L3.obj"
+dest_files=[ "res://.import/10048_Shrimp_v1_L3.obj-5dc2bcc7737f53d1d65e53055a12fef0.mesh", "res://.import/10048_Shrimp_v1_L3.obj-5dc2bcc7737f53d1d65e53055a12fef0.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
