@@ -2,41 +2,7 @@
 
 [ext_resource path="res://assets/brush_tex_2.png" type="Texture" id=1]
 [ext_resource path="res://assets/paper_texture.png" type="Texture" id=2]
-
-
-[sub_resource type="Shader" id=1]
-code = "shader_type spatial;
-render_mode specular_disabled;
-
-uniform sampler2D paper_tex : hint_black;
-
-uniform float silhouette_lower_bound : hint_range(0, 1);
-uniform float silhouette_upper_bound : hint_range(0, 1);
-uniform sampler2D brush_texture : hint_black;
-uniform sampler2D diffuse_gradient_texture : hint_black;
-
-void fragment() {
-	float n_dot_view = dot(NORMAL, VIEW);
-	n_dot_view = smoothstep(silhouette_lower_bound, silhouette_upper_bound, n_dot_view);
-	vec3 silhouette = n_dot_view * vec3(1); // Extract  silhouette
-
-	// Sphere mapping
-	vec3 r = 2. * (dot(normalize(NORMAL), normalize(VERTEX))) * (normalize(NORMAL) - normalize(VERTEX));
-	float m = 2.*sqrt(pow(r.x, 2.) + pow(r.y, 2.) + pow((r.z + 1.), 2.));
-	vec2 uv_tex = vec2((r.x/m) + .5, (r.y/m) + .5);
-
-	vec3 brush = texture(brush_texture, uv_tex).xyz;
-	vec3 paper = texture(paper_tex, UV).rgb;
-
-	ALBEDO = (silhouette + brush) * paper;
-}
-
-void light() {
-	float diffuse = clamp(dot(NORMAL, LIGHT), 0., 1.);
-	vec2 uv_diffuse = vec2(min(1., diffuse * (.3*ALBEDO.r + .59*ALBEDO.g + .11*ALBEDO.b)), .5);
-	float diffuse_grad = texture(diffuse_gradient_texture, vec2(uv_diffuse)).x;
-	DIFFUSE_LIGHT += diffuse_grad * ALBEDO * ATTENUATION;
-}"
+[ext_resource path="res://assets/sumi_e.shader" type="Shader" id=3]
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.233696, 0.277174, 0.413043, 0.440217, 0.559783, 0.597826 )
@@ -46,7 +12,7 @@ colors = PoolColorArray( 0.0901961, 0.0901961, 0.0901961, 1, 0.0901961, 0.090196
 gradient = SubResource( 2 )
 
 [resource]
-shader = SubResource( 1 )
+shader = ExtResource( 3 )
 shader_param/silhouette_lower_bound = 0.387
 shader_param/silhouette_upper_bound = 0.599
 shader_param/paper_tex = ExtResource( 2 )
