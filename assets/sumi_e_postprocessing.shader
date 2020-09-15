@@ -2,6 +2,7 @@ shader_type canvas_item;
 
 uniform float k;
 uniform float power;
+uniform float paper_mix_value : hint_range(0, 1);
 uniform sampler2D paper_texture : hint_black;
 
 vec3 rgb2hsv(vec3 c) {
@@ -42,10 +43,11 @@ void fragment() {
 	vec3 orig_color = texture(TEXTURE, UV).rgb;
 	
 	vec3 paper = texture(paper_texture, UV).rgb;
-	vec3 fin_col = mix(filtered_col * orig_color, paper, 0.2);
+	vec3 fin_col = filtered_col * orig_color;
+	fin_col = mix(filtered_col * orig_color, paper, paper_mix_value);
 	
 	vec3 hsv_fin = rgb2hsv(fin_col);
-	hsv_fin.x *= 1.1;
+	hsv_fin.x *= 1.;
 	fin_col = hsv2rgb(hsv_fin);
 	
 	COLOR.rgb = fin_col;

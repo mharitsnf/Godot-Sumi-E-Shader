@@ -7,4 +7,5 @@
 shader = ExtResource( 2 )
 shader_param/k = 2.0
 shader_param/power = 3.2
+shader_param/paper_mix_value = 0.131
 shader_param/paper_texture = ExtResource( 1 )
