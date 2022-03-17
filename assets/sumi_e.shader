@@ -17,10 +17,10 @@ uniform sampler2D diffuse_gradient_texture : hint_black;
 void fragment() {
 	float n_dot_view = dot(NORMAL, VIEW);
 	n_dot_view = smoothstep(silhouette_lower_bound, silhouette_upper_bound, n_dot_view);
-	vec3 silhouette = n_dot_view * vec3(1); // Extract  silhouette
+	vec3 silhouette = vec3(n_dot_view); // Extract  silhouette
 
 	// Sphere mapping
-	vec3 r = 2. * dot(normalize(NORMAL), normalize(-VIEW)) * normalize(NORMAL) - normalize(-VIEW);
+	vec3 r = 2. * dot(normalize(NORMAL), normalize(-VIEW)) * normalize(NORMAL) - normalize(-VIEW); // Refl vector
 	float m = 2. * sqrt(r.x*r.x + r.y*r.y + ((r.z + 1.)*(r.z + 1.)));
 	vec2 uv_tex = vec2((r.x/m) + .5, (r.y/m) + .5);
 
